@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.hasherr.gdsesummerjam2014.screen.ScreenManager;
 
 /**
  * Created by Evan on 7/4/2014.
@@ -16,31 +17,28 @@ public class Game implements ApplicationListener
 {
     SpriteBatch batch;
     OrthographicCamera camera;
-    TmxMapLoader loader;
-    OrthogonalTiledMapRenderer mapRenderer;
+    ScreenManager screenManager;
 
     @Override
     public void create()
     {
         batch = new SpriteBatch();
+        screenManager = new ScreenManager();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
         camera.update();
         batch.setProjectionMatrix(camera.combined);
-
-        loader = new TmxMapLoader();
-        TiledMap map = loader.load("Maps/map.tmx");
-        mapRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch);
-        mapRenderer.setView(camera);
     }
 
     @Override
     public void render()
     {
         clearScreen();
-        mapRenderer.render();
-        new InputManager().handleInput();
+        batch.begin();
+        screenManager.render(batch);
+        batch.end();
+        screenManager.update();
     }
 
     private void clearScreen()

@@ -14,7 +14,5 @@ public class InputManager
         {
             System.out.println("X: " + Gdx.input.getX() / 64f + " Y: " + Gdx.input.getY() / 64f);
         }
-
-
     }
 }

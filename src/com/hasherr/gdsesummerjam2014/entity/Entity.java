@@ -15,10 +15,7 @@ public abstract class Entity
     public Vector2 velocity;
     public Rectangle boundingBox;
 
-    public void render(SpriteBatch batch)
-    {
-
-    }
+    public abstract void render(SpriteBatch batch);
 
     public void update()
     {

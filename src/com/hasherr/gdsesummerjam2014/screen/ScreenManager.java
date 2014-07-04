@@ -1,5 +1,7 @@
 package com.hasherr.gdsesummerjam2014.screen;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ public class ScreenManager
         currentScreens.add(new GameScreen());
     }
 
-    public void render()
+    public void render(SpriteBatch batch)
     {
         for (Screen screen : currentScreens)
         {
