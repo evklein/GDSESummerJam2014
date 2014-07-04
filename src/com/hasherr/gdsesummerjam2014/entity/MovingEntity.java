@@ -10,6 +10,6 @@ public abstract class MovingEntity extends Entity
     @Override
     public void render(SpriteBatch batch)
     {
-        batch.draw(sprite, position.x, position.y, );
+
     }
 }

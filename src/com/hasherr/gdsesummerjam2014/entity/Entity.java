@@ -15,10 +15,9 @@ public abstract class Entity
     Vector2 velocity;
     Rectangle boundingBox;
 
-    @Override
     public void render(SpriteBatch batch)
     {
-        batch.draw(sprite, position.x, position.y, );
+
     }
 
     public void update()
