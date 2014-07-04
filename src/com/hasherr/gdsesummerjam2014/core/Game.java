@@ -28,9 +28,9 @@ public class Game implements ApplicationListener
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+
         loader = new TmxMapLoader();
         TiledMap map = loader.load("Maps/map.tmx");
-
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch);
         mapRenderer.setView(camera);
     }

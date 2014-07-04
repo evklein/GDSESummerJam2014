@@ -10,10 +10,10 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Entity
 {
-    Texture sprite;
-    Vector2 position;
-    Vector2 velocity;
-    Rectangle boundingBox;
+    public Texture sprite;
+    public Vector2 position;
+    public Vector2 velocity;
+    public Rectangle boundingBox;
 
     public void render(SpriteBatch batch)
     {
@@ -22,6 +22,11 @@ public abstract class Entity
 
     public void update()
     {
+        setBoundingBoxBounds();
+    }
 
+    private void setBoundingBoxBounds()
+    {
+        boundingBox.set(position.x, position.y, 1f, 1f);
     }
 }

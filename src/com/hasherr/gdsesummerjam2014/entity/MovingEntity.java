@@ -7,9 +7,5 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public abstract class MovingEntity extends Entity
 {
-    @Override
-    public void render(SpriteBatch batch)
-    {
 
-    }
 }
