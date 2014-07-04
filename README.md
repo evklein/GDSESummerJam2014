@@ -1,4 +1,4 @@
-GDSESummerJam2014 (http://meta.gamedev.stackexchange.com/questions/1637/the-2014-gdse-summer-game-jam)
+GDSESummerJam2014 (http://bit.ly/1pOsjBk)
 =================
 
 Game name: Tale of Time
