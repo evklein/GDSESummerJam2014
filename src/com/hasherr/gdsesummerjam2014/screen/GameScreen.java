@@ -35,9 +35,10 @@ public class GameScreen implements Screen
     public void render()
     {
         level.drawLevel(camera);
-        player.render(batch);
+        batch.begin();
         log = new Log(new Vector2(4, 1), new Vector2(-0.2f, 0f));
         log.render(batch);
+        player.render(batch);
         batch.end();
     }
 
