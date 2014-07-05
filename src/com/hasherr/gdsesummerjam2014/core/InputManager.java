@@ -12,32 +12,50 @@ public class InputManager
 {
     public void handleInput(Player playerToControl)
     {
-        if (Gdx.input.isKeyPressed(Input.Keys.W) && playerToControl.canMove)
+        if (playerToControl.canMove)
         {
-            playerToControl.setVelocity(new Vector2(0f, 0.2f));
-            playerToControl.canMove = false;
+            if (Gdx.input.isKeyPressed(Input.Keys.W))
+            {
+                playerToControl.setVelocity(new Vector2(0f, 1f));
+                playerToControl.canMove = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A))
+            {
+                playerToControl.setVelocity(new Vector2(-1f, 0f));
+                playerToControl.canMove = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S))
+            {
+                playerToControl.setVelocity(new Vector2(0f, -1f));
+                playerToControl.canMove = false;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D))
+            {
+                playerToControl.setVelocity(new Vector2(1f, 0f));
+                playerToControl.canMove = false;
+            }
         }
-        else if (Gdx.input.isKeyPressed(Input.Keys.A) && playerToControl.canMove)
-        {
-            playerToControl.setVelocity(new Vector2(-0.2f, 0f));
-            playerToControl.canMove = false;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.S)&& playerToControl.canMove)
-        {
-            playerToControl.setVelocity(new Vector2(0f, -0.2f));
-            playerToControl.canMove = false;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.D)&& playerToControl.canMove)
-        {
-            System.out.println("turn down for what");
-            playerToControl.setVelocity(new Vector2(0.2f, 0f));
-            playerToControl.canMove = false;
-        }
-        if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.A) &&
-                !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.D))
+        else
         {
             playerToControl.setVelocity(new Vector2(0f, 0f));
-            playerToControl.canMove = true;
+            if (!isKeyDown())
+            {
+                playerToControl.canMove = true;
+            }
         }
+    }
+
+    private boolean isKeyDown()
+    {
+        boolean result = false;
+        int[] keys = { Input.Keys.W, Input.Keys.A, Input.Keys.S, Input.Keys.D };
+        for (int key : keys)
+        {
+            if (Gdx.input.isKeyPressed(key))
+            {
+                result = true;
+            }
+        }
+        return result;
     }
 }

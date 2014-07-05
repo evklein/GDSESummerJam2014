@@ -32,6 +32,6 @@ public class Player extends Entity
 
         position.x += velocity.x;
         position.y += velocity.y;
-        canMove = true; // Reset canMove for next movement.
+//        canMove = true; // Reset canMove for next movement.
     }
 }
