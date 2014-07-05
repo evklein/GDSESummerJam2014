@@ -10,20 +10,25 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player extends Entity
 {
-    public Player()
+    public Player(String spritePath, Vector2 position)
     {
-        position = new Vector2();
+        super(spritePath, position);
+        velocity = new Vector2();
     }
 
     @Override
     public void render(SpriteBatch batch)
     {
-        batch.draw(sprite, position.x, position.y, position.x, position.y, 1f, 1f, 1f, 1f, 0f, )
+        batch.begin();
+        batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, false, false);
     }
 
     @Override
     public void update()
     {
         super.update();
+
+        position.x += velocity.x;
+        position.y += velocity.y;
     }
 }

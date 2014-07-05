@@ -15,6 +15,13 @@ public abstract class Entity
     public Vector2 velocity;
     public Rectangle boundingBox;
 
+    public Entity(String spritePath, Vector2 position)
+    {
+        sprite = new Texture(spritePath);
+        this.position = position;
+        boundingBox = new Rectangle();
+    }
+
     public abstract void render(SpriteBatch batch);
 
     public void update()
@@ -25,5 +32,15 @@ public abstract class Entity
     private void setBoundingBoxBounds()
     {
         boundingBox.set(position.x, position.y, 1f, 1f);
+    }
+
+    public Vector2 getVelocity()
+    {
+        return velocity;
+    }
+
+    public void setVelocity(Vector2 velocity)
+    {
+        this.velocity = velocity;
     }
 }

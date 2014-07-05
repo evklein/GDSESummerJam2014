@@ -1,8 +1,8 @@
 package com.hasherr.gdsesummerjam2014.level;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
@@ -21,11 +21,12 @@ public class Level
     public Level(String pathToMap, SpriteBatch batch)
     {
         map = new TmxMapLoader().load(pathToMap);
-        levelRenderer = new OrthogonalTiledMapRenderer(map, batch);
+        levelRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch);
     }
 
-    public void drawLevel()
+    public void drawLevel(OrthographicCamera camera)
     {
+        levelRenderer.setView(camera);
         levelRenderer.render();
     }
 

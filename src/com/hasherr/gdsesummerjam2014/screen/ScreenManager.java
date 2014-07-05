@@ -1,5 +1,6 @@
 package com.hasherr.gdsesummerjam2014.screen;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ public class ScreenManager
 {
     ArrayList<Screen> currentScreens;
 
-    public ScreenManager()
+    public ScreenManager(SpriteBatch batch, OrthographicCamera camera)
     {
         currentScreens = new ArrayList<Screen>();
-        currentScreens.add(new GameScreen());
+        currentScreens.add(new GameScreen(batch, camera));
     }
 
     public void render(SpriteBatch batch)

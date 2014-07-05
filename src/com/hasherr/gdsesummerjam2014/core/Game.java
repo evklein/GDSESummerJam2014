@@ -5,9 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.hasherr.gdsesummerjam2014.screen.ScreenManager;
 
 /**
@@ -23,11 +20,11 @@ public class Game implements ApplicationListener
     public void create()
     {
         batch = new SpriteBatch();
-        screenManager = new ScreenManager();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
         camera.update();
+        screenManager = new ScreenManager(batch, camera);
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -35,9 +32,7 @@ public class Game implements ApplicationListener
     public void render()
     {
         clearScreen();
-        batch.begin();
         screenManager.render(batch);
-        batch.end();
         screenManager.update();
     }
 

@@ -1,7 +1,9 @@
 package com.hasherr.gdsesummerjam2014.entity.path;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.hasherr.gdsesummerjam2014.entity.Direction;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -12,10 +14,18 @@ import java.util.Random;
 public class Path
 {
     Direction moveDirection;
+    ArrayList<Cell> tiles;
 
-    public Path()
+    public Path(int yPos)
     {
+        moveDirection = generateDirection();
 
+
+    }
+
+    private ArrayList<Cell> getTiles()
+    {
+        return null;
     }
 
     private Direction generateDirection()
