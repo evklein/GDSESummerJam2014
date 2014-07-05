@@ -2,6 +2,7 @@ package com.hasherr.gdsesummerjam2014.entity.path;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.hasherr.gdsesummerjam2014.entity.Direction;
+import com.hasherr.gdsesummerjam2014.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,18 +15,31 @@ import java.util.Random;
 public class Path
 {
     Direction moveDirection;
-    ArrayList<Cell> tiles;
+    float pathVelocity;
+    PathType type;
+    int yPos;
 
-    public Path(int yPos)
+    public Path(int yPos, PathType type)
     {
         moveDirection = generateDirection();
-
-
+        this.type = type;
+        this.yPos = yPos;
+        pathVelocity = new Random().nextFloat() * (0.7f - 0.1f) + 0.1f;
+        if (moveDirection == Direction.RIGHT_TO_LEFT)
+            pathVelocity *= -1f;
     }
 
-    private ArrayList<Cell> getTiles()
+    public Entity generatePathEntity()
     {
-        return null;
+        Entity entity;
+        if (type == PathType.WATER)
+        {
+            entity = new Log()
+        }
+        else
+        {
+
+        }
     }
 
     private Direction generateDirection()
