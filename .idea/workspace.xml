@@ -4,11 +4,13 @@
     <list default="true" id="fe7e320f-833b-419e-a504-729e8db88c5d" name="Default" comment="" />
     <ignored path="GDSESummerJam2014.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404593828593" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404595955970" ignored="false" />
     <file path="/fragment.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404589348961" ignored="false" />
     <file path="/InputManager.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404592983900" ignored="false" />
-    <file path="/Path.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404593885643" ignored="false" />
+    <file path="/Path.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404595880230" ignored="false" />
     <file path="/PathType.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404593776340" ignored="false" />
+    <file path="/Level.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404595667239" ignored="false" />
+    <file path="/GameScreen.java" changelist="fe7e320f-833b-419e-a504-729e8db88c5d" time="1404595402182" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,8 +74,21 @@
       <file leaf-file-name="Path.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Path.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="29" selection-start="902" selection-end="902" vertical-scroll-proportion="0.5785124">
+            <state line="49" column="56" selection-start="1253" selection-end="1253" vertical-scroll-proportion="0.8126722">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/level/Level.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="22" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1383#1614#0" expanded="true" />
+                <element signature="e#1603#1604#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,6 +97,24 @@
         <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/PathType.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="9" column="8" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameScreen.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/GameScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="32" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Log.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Log.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="27" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,15 +142,15 @@
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/Screen.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/Level.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/MovingEntity.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/level/Level.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/ScreenManager.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Log.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/Entity.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/core/Game.java" />
-        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/GameScreen.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/Player.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/core/InputManager.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/PathType.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/level/Level.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/GameScreen.java" />
+        <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Log.java" />
         <option value="$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Path.java" />
       </list>
     </option>
@@ -188,6 +221,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gdsesummerjam2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GDSESummerJam2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GDSESummerJam2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gdsesummerjam2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="level" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -444,7 +499,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263889" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32578397" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -535,13 +590,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/core/Starter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/MovingEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -578,13 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/Screen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -593,20 +634,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/ScreenManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/GameScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Log.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -634,9 +661,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gdx-sources.jar!/com/badlogic/gdx/utils/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="16" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.67142856">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="22" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1383#1614#0" expanded="true" />
+            <element signature="e#1603#1604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/screen/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="32" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Log.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="27" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/hasherr/gdsesummerjam2014/entity/path/Path.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="29" selection-start="902" selection-end="902" vertical-scroll-proportion="0.5785124">
+        <state line="49" column="56" selection-start="1253" selection-end="1253" vertical-scroll-proportion="0.8126722">
           <folding />
         </state>
       </provider>

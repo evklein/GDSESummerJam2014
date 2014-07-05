@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.hasherr.gdsesummerjam2014.core.InputManager;
 import com.hasherr.gdsesummerjam2014.entity.Player;
 import com.hasherr.gdsesummerjam2014.entity.path.Log;
+import com.hasherr.gdsesummerjam2014.entity.path.PathType;
 import com.hasherr.gdsesummerjam2014.level.Level;
 
 /**
@@ -24,7 +25,7 @@ public class GameScreen implements Screen
 
     public GameScreen(SpriteBatch batch, OrthographicCamera camera)
     {
-        level = new Level("Maps/map.tmx", batch);
+        level = new Level("Maps/map.tmx", batch, PathType.WATER);
         player = new Player("Sprites/player.png", new Vector2(3, 0));
         this.batch = batch;
         this.camera = camera;
@@ -35,7 +36,6 @@ public class GameScreen implements Screen
     public void render()
     {
         level.drawLevel(camera);
-        batch.begin();
         log = new Log(new Vector2(4, 1), new Vector2(-0.2f, 0f));
         log.render(batch);
         player.render(batch);

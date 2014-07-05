@@ -1,6 +1,8 @@
 package com.hasherr.gdsesummerjam2014.entity.path;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Vector2;
 import com.hasherr.gdsesummerjam2014.entity.Direction;
 import com.hasherr.gdsesummerjam2014.entity.Entity;
 
@@ -18,6 +20,7 @@ public class Path
     float pathVelocity;
     PathType type;
     int yPos;
+    ArrayList<Entity> pathEntities;
 
     public Path(int yPos, PathType type)
     {
@@ -27,19 +30,49 @@ public class Path
         pathVelocity = new Random().nextFloat() * (0.7f - 0.1f) + 0.1f;
         if (moveDirection == Direction.RIGHT_TO_LEFT)
             pathVelocity *= -1f;
+        pathEntities = new ArrayList<>();
     }
 
-    public Entity generatePathEntity()
+    public void renderPathObjects(SpriteBatch batch)
     {
-        Entity entity;
+        for (Entity e: pathEntities)
+        {
+            e.render(batch);
+            e.update();
+        }
+
+    }
+
+    private void handleEntityExistances()
+    {
+        for (Entity e: pathEntities)
+        {
+            if (e.position.x > 22f || e.position.x < -22f)
+            {
+                pathEntities.remove(e);
+            }
+        }
+    }
+
+    public void generatePathEntity()
+    {
+        Entity entity = null;
+        Vector2 entityPosition = new Vector2();
+        if (moveDirection == Direction.RIGHT_TO_LEFT)
+        {
+            int randX = new Random().nextInt((20 - 10) + 1) + 10;
+            entityPosition.set(randX, yPos);
+        }
+
         if (type == PathType.WATER)
         {
-            entity = new Log()
+            entity = new Log(entityPosition, new Vector2(0f, pathVelocity));
         }
         else
         {
 
         }
+        pathEntities.add(entity);
     }
 
     private Direction generateDirection()
