@@ -17,13 +17,13 @@ public class InputManager
             if (isKeyDown())
                 playerToControl.setCanMove(false);
             if (Gdx.input.isKeyPressed(Input.Keys.W))
-                playerToControl.setVelocity(new Vector2(0f, 1f));
+                playerToControl.velocity.y += 1f;
             if (Gdx.input.isKeyPressed(Input.Keys.A))
-                playerToControl.setVelocity(new Vector2(-1f, 0f));
+                playerToControl.velocity.x += -1f;
             if (Gdx.input.isKeyPressed(Input.Keys.S))
-                playerToControl.setVelocity(new Vector2(0f, -1f));
+                playerToControl.velocity.y += -1f;
             if (Gdx.input.isKeyPressed(Input.Keys.D))
-                playerToControl.setVelocity(new Vector2(1f, 0f));
+                playerToControl.velocity.x += 1f;
         }
         else
         {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.hasherr.gdsesummerjam2014.entity.Entity;
 import com.hasherr.gdsesummerjam2014.entity.path.Path;
 import com.hasherr.gdsesummerjam2014.entity.path.PathType;
 
@@ -35,7 +36,7 @@ public class Level
         levelRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch); // 1/64
         levelPaths = new ArrayList<>();
 
-        for (int i : pathHeights)
+        for (int i: pathHeights)
         {
             levelPaths.add(new Path(i, pathType));
         }
@@ -71,5 +72,26 @@ public class Level
         {
             p.renderPathObjects(batch);
         }
+    }
+
+    public void updatePaths()
+    {
+        for (Path p: levelPaths)
+        {
+            p.updatePathObjects();
+        }
+    }
+
+    public ArrayList<Entity> getEntities()
+    {
+        ArrayList<Entity> entities = new ArrayList<>();
+        for (Path p: levelPaths)
+        {
+            for (Entity e: p.getPathEntities())
+            {
+                entities.add(e);
+            }
+        }
+        return entities;
     }
 }

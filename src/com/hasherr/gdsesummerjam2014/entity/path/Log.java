@@ -20,7 +20,7 @@ public class Log extends Entity
     {
         super.update();
 
-        position.x -= 0.04;
+        position.x += velocity.x;
     }
 
     @Override
