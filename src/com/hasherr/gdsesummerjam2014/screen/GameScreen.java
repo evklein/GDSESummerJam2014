@@ -43,17 +43,27 @@ public class GameScreen extends Screen
         this.levelType = levelType;
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Spoutnik.ttf"));
-        scoreFont = generator.generateFont(12);
+        scoreFont = generator.generateFont(100);
     }
 
     @Override
-        public void render()
-        {
-            level.drawLevel(camera);
-            player.render(batch);
-            scoreFont.draw(batch, Integer.toString(player.getScore()), 1f, 7f);
-            batch.end();
-        }
+    public void render()
+    {
+        level.drawLevel(camera);
+        player.render(batch);
+        renderBitMapFont();
+        batch.end();
+    }
+
+    private void renderBitMapFont()
+    {
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.setProjectionMatrix(camera.combined);
+        scoreFont.draw(batch, Integer.toString(player.getScore()), 50, 6*64);
+        camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
+                Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
+        batch.setProjectionMatrix(camera.combined);
+    }
 
     @Override
     public void update()
@@ -151,6 +161,16 @@ public class GameScreen extends Screen
         {
             isReadyForSwitch = true;
         }
+    }
+
+    public int getScore()
+    {
+        return player.getScore();
+    }
+
+    public void setScore(int score)
+    {
+        player.setScore(score);
     }
 
 }

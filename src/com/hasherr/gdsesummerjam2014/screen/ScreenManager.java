@@ -21,7 +21,8 @@ public class ScreenManager
     public ScreenManager(SpriteBatch batch, OrthographicCamera camera)
     {
         currentScreens = new ArrayList<Screen>();
-        currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
+//        currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
+        currentScreens.add(new StartScreen(batch, camera, this));
 
         this.batch = batch;
         this.camera = camera;
@@ -50,26 +51,36 @@ public class ScreenManager
 
         if (lastScreen instanceof GameScreen && ((GameScreen) lastScreen).isReadyForSwitch)
         {
+            int score = ((GameScreen) lastScreen).getScore();
+            score ++;
             if (((GameScreen) lastScreen).levelType == PathType.WATER)
             {
                 currentScreens.clear();
                 currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
+                ((GameScreen)currentScreens.get(currentScreens.size() - 1)).setScore(score);
             }
             else
             {
                 currentScreens.clear();
-                currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
+                currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
+                ((GameScreen)currentScreens.get(currentScreens.size() - 1)).setScore(score);
             }
         }
     }
 
-    private void pop()
+    public void startGame()
     {
-        currentScreens.remove(currentScreens.size() - 1);
+        currentScreens.clear();
+        currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
     }
 
-    private void push(Screen screenToPush)
+    public void showCredits()
     {
-        currentScreens.add(currentScreens.size() - 1, screenToPush);
+
+    }
+
+    public void showTitle()
+    {
+
     }
 }
