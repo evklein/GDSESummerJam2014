@@ -28,6 +28,7 @@ public class Level
 
     private Timer timer;
     private Task timerTask;
+    private float timerInterval;
 
     public Level(String pathToMap, SpriteBatch batch, PathType pathType)
     {
@@ -40,6 +41,11 @@ public class Level
         {
             levelPaths.add(new Path(i, pathType));
         }
+
+        if (pathType == PathType.WATER)
+            timerInterval = 1f;
+        else
+            timerInterval = 5f;
 
         initiateTimerElements();
     }
@@ -58,7 +64,7 @@ public class Level
                 }
             }
         };
-        timer.scheduleTask(timerTask, 0f, 1f);
+        timer.scheduleTask(timerTask, 0f, timerInterval);
         timer.start();
     }
 

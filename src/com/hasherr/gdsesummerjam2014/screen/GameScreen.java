@@ -58,11 +58,35 @@ public class GameScreen implements Screen
     {
         if (levelType == PathType.WATER)
         {
-            for (Entity e : level.getEntities())
+            for (Entity e: level.getEntities())
             {
                 if (player.boundingBox.overlaps(e.boundingBox))
                 {
                     player.velocity.x = e.velocity.x;
+                    player.setSafe(true);
+                }
+            }
+
+            int[] hazardY = { 1, 2, 3, 5, 6, 7 };
+            for (int y : hazardY)
+            {
+                for (int x = 0; x < 9; x++)
+                {
+                    if ((int)player.position.x == x && (int)player.position.y == y && !player.isSafe())
+                    {
+                        System.out.println("I'M DIEING");
+                    }
+                }
+            }
+        }
+        else // Cars.
+        {
+            for (Entity e: level.getEntities())
+            {
+                if (player.boundingBox.overlaps(e.boundingBox))
+                {
+                    // TODO: Add screen switching.
+                    System.out.println("HOLY FUCKING DICKS");
                 }
             }
         }

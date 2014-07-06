@@ -10,20 +10,30 @@ import com.hasherr.gdsesummerjam2014.entity.Player;
  */
 public class InputManager
 {
+    private SoundManager manager;
+    public InputManager()
+    {
+        manager = new SoundManager();
+    }
+
     public void handleInput(Player playerToControl)
     {
         if (playerToControl.canMove())
         {
             if (isKeyDown())
+            {
                 playerToControl.setCanMove(false);
+                manager.playSound("Sounds/jump.wav");
+            }
+
             if (Gdx.input.isKeyPressed(Input.Keys.W))
-                playerToControl.velocity.y += 1f;
+                playerToControl.position.y += 1f;
             if (Gdx.input.isKeyPressed(Input.Keys.A))
-                playerToControl.velocity.x += -1f;
+                playerToControl.position.x += -1f;
             if (Gdx.input.isKeyPressed(Input.Keys.S))
-                playerToControl.velocity.y += -1f;
+                playerToControl.position.y += -1f;
             if (Gdx.input.isKeyPressed(Input.Keys.D))
-                playerToControl.velocity.x += 1f;
+                playerToControl.position.x += 1f;
         }
         else
         {

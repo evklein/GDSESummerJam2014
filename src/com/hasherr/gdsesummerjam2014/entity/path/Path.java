@@ -82,7 +82,7 @@ public class Path
         }
         else
         {
-
+            entity = new Car(entityPosition, new Vector2(pathVelocity, 0f));
         }
         pathEntities.add(entity);
     }
