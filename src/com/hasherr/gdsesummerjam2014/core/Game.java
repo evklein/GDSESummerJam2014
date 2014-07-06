@@ -32,7 +32,7 @@ public class Game implements ApplicationListener
     public void render()
     {
         clearScreen();
-        screenManager.render(batch);
+        screenManager.render();
         screenManager.update();
         camera.update();
     }
@@ -44,13 +44,13 @@ public class Game implements ApplicationListener
     }
 
     @Override
-    public void pause() // DEPRECATED: Not called on desktop.
+    public void pause()
     {
-
+        screenManager.pauseScreen();
     }
 
     @Override
-    public void resume() // DEPRECATED: Not called on desktop.
+    public void resume()
     {
 
     }

@@ -25,24 +25,34 @@ public class GameScreen extends Screen
     private Player player;
     private InputManager inputManager;
     public PathType levelType;
-    public boolean isReadyForSwitch;
-    BitmapFont scoreFont;
+    private boolean isReadyForSwitch;
+    private BitmapFont scoreFont;
 
     public GameScreen(SpriteBatch batch, OrthographicCamera camera, PathType levelType)
     {
         this.batch = batch;
         this.camera = camera;
-
-        if (levelType == PathType.WATER)
-            level = new Level("Maps/river_map.tmx", batch, levelType);
-        else
-            level = new Level("Maps/road_map.tmx", batch, levelType);
-        player = new Player("Sprites/Player/face_down.png", new Vector2(5, 0));
         inputManager = new InputManager();
         isReadyForSwitch = false;
         this.levelType = levelType;
 
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Spoutnik.ttf"));
+        determineMap();
+        player = new Player("Sprites/Player/face_down.png", new Vector2(5, 0));
+
+        generateFont("Fonts/Spoutnik.ttf");
+    }
+
+    private void determineMap()
+    {
+        if (levelType == PathType.WATER)
+            level = new Level("Maps/river_map.tmx", batch, levelType);
+        else
+            level = new Level("Maps/road_map.tmx", batch, levelType);
+    }
+
+    private void generateFont(String fontPath)
+    {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(fontPath));
         scoreFont = generator.generateFont(100);
     }
 
@@ -75,6 +85,7 @@ public class GameScreen extends Screen
         handleLevelHazards();
         handleLevelTypeSwitching();
         handlePowerup();
+        handlePlayerLevelBounds();
     }
 
     private void handlePowerup()
@@ -91,42 +102,50 @@ public class GameScreen extends Screen
 
     private void handleLevelHazards()
     {
-        System.out.println(player.position.y);
-        if (levelType == PathType.WATER)
-        {
-            boolean isOnPlatform = false;
-            for (Entity e: level.getEntities())
-            {
-                if (player.boundingBox.overlaps(e.boundingBox))
-                {
-                    player.velocity.x = e.velocity.x * e.timeConstant;
-                    isOnPlatform = true;
-                }
-            }
+        if (levelType == PathType.ROAD)
+            handleRoadHazards();
+        else
+            handleWaterHazards();
+    }
 
-            int[] hazardY = { 1, 2, 3, 5, 6, 7 };
-            for (int x = 0; x < 18; x++)
-            {
-                for (int y: hazardY)
-                {
-                    if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
-                    {
-                        isDisposable = true;
-                    }
-                }
-            }
-        }
-        else // Cars.
+    private void handleWaterHazards()
+    {
+        boolean isOnPlatform = false;
+        for (Entity e: level.getEntities())
         {
-            for (Entity e: level.getEntities())
+            if (player.boundingBox.overlaps(e.boundingBox))
             {
-                if (player.boundingBox.overlaps(e.boundingBox))
-                {
-                    isDisposable = true;
-                }
+                player.velocity.x = e.velocity.x * e.timeConstant;
+                isOnPlatform = true;
             }
         }
 
+        int[] hazardY = { 1, 2, 3, 5, 6, 7 };
+        for (int x = 0; x < 18; x++)
+        {
+            for (int y: hazardY)
+            {
+                if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
+                {
+//                    isDisposable = true;
+                }
+            }
+        }
+    }
+
+    private void handleRoadHazards()
+    {
+        for (Entity e: level.getEntities())
+        {
+            if (player.boundingBox.overlaps(e.boundingBox))
+            {
+                isDisposable = true;
+            }
+        }
+    }
+
+    private void handlePlayerLevelBounds()
+    {
         if (player.position.y < 0f)
             player.position.y = 0f;
         if (player.position.y == 0f && player.position.x < 0f)
@@ -158,9 +177,7 @@ public class GameScreen extends Screen
     private void handleLevelTypeSwitching()
     {
         if (player.position.y > 8f)
-        {
             isReadyForSwitch = true;
-        }
     }
 
     public int getScore()
@@ -173,4 +190,8 @@ public class GameScreen extends Screen
         player.setScore(score);
     }
 
+    public boolean isReadyForSwitch()
+    {
+        return isReadyForSwitch;
+    }
 }
