@@ -14,6 +14,7 @@ public abstract class Entity
     public Vector2 position;
     public Vector2 velocity;
     public Rectangle boundingBox;
+    public float timeConstant = 1f;
 
     public Entity(String spritePath, Vector2 position)
     {

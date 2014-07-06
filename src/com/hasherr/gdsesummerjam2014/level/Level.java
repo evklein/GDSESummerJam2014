@@ -5,13 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.hasherr.gdsesummerjam2014.entity.Entity;
 import com.hasherr.gdsesummerjam2014.entity.path.Path;
 import com.hasherr.gdsesummerjam2014.entity.path.PathType;
+import com.hasherr.gdsesummerjam2014.entity.Powerup;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,6 +28,7 @@ public class Level
     private int[] pathHeights = { 1, 2, 3, 5, 6, 7 };
     private ArrayList<Path> levelPaths;
     private SpriteBatch batch;
+    private Powerup powerup;
 
     private Timer timer;
     private Task timerTask;
@@ -36,6 +40,7 @@ public class Level
         this.batch = batch;
         levelRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch); // 1/64
         levelPaths = new ArrayList<>();
+        powerup = createPowerup();
 
         for (int i: pathHeights)
         {
@@ -78,6 +83,7 @@ public class Level
         {
             p.renderPathObjects(batch);
         }
+        powerup.render(batch);
     }
 
     public void updatePaths()
@@ -86,6 +92,7 @@ public class Level
         {
             p.updatePathObjects();
         }
+        powerup.update();
     }
 
     public ArrayList<Entity> getEntities()
@@ -99,5 +106,23 @@ public class Level
             }
         }
         return entities;
+    }
+
+    private Powerup createPowerup()
+    {
+        Random rand = new Random();
+        int randX = 0 + rand.nextInt(17 - 0 + 1);
+        int randY = 0 + rand.nextInt(8 - 0 + 1);
+        return new Powerup(new Vector2(randX, randY));
+    }
+
+    public Powerup getPowerup()
+    {
+        return powerup;
+    }
+
+    public void powerupActivated()
+    {
+        powerup.position.set(-500f, -500f); // Set it to nowhere.
     }
 }

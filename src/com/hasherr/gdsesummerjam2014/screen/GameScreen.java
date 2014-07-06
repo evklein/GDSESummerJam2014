@@ -33,9 +33,10 @@ public class GameScreen extends Screen
             level = new Level("Maps/river_map.tmx", batch, levelType);
         else
             level = new Level("Maps/road_map.tmx", batch, levelType);
-        player = new Player("Sprites/player.png", new Vector2(3, 0));
+        player = new Player("Sprites/player.png", new Vector2(5, 0));
         inputManager = new InputManager();
         isReadyForSwitch = false;
+        this.levelType = levelType;
     }
 
     @Override
@@ -57,37 +58,50 @@ public class GameScreen extends Screen
         inputManager.handleInput(player);
         handleLevelHazards();
         handleLevelTypeSwitching();
+        handlePowerup();
+    }
+
+    private void handlePowerup()
+    {
+        if (level.getPowerup().boundingBox.overlaps(player.boundingBox))
+        {
+            level.powerupActivated();
+            for (Entity e: level.getEntities())
+            {
+                e.timeConstant = 0.4f;
+            }
+        }
     }
 
     private void handleLevelHazards()
     {
+        System.out.println(player.position.y);
         if (levelType == PathType.WATER)
         {
+            boolean isOnPlatform = false;
             for (Entity e: level.getEntities())
             {
                 if (player.boundingBox.overlaps(e.boundingBox))
                 {
                     player.velocity.x = e.velocity.x;
-                    player.setSafe(true);
-                    break;
+                    isOnPlatform = true;
                 }
             }
-
-            System.out.println(player.isSafe());
 
             int[] hazardY = { 1, 2, 3, 5, 6, 7 };
             for (int y: hazardY)
             {
                 for (int x = 0; x < 18; x++)
                 {
-                    if ((int)player.position.x == x && (int)player.position.y == y && !player.isSafe())
+                    for (int i = 0; i < 3; i++)
                     {
-                        System.out.println("X: " + (int)player.position.x + " Y: " + (int)player.position.y + " Safe: " + player.isSafe());
-                        isDisposable = true;
+                        if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
+                        {
+                            isDisposable = true;
+                        }
                     }
                 }
             }
-            player.setSafe(false); // Reset safeness of player.
         }
         else // Cars.
         {

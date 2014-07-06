@@ -18,8 +18,14 @@ public class Car extends Entity
     @Override
     public void render(SpriteBatch batch)
     {
-        // Same as player class; render so that each sprite appears as a 1x1 unit.
-        batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, false, false);
+        if (this.velocity.x > 0)
+        {
+            batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, false, false);
+        }
+        else
+        {
+            batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, true, false);
+        }
     }
 
     @Override

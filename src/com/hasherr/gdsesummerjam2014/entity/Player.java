@@ -12,16 +12,13 @@ import com.badlogic.gdx.math.Vector2;
 public class Player extends Entity
 {
     private boolean canMove;
-    private boolean isSafe;
     private int score;
 
     public Player(String spritePath, Vector2 position)
     {
         super(spritePath, position);
         velocity = new Vector2();
-
         canMove = true;
-        isSafe = false;
         score = 0;
     }
 
@@ -54,9 +51,6 @@ public class Player extends Entity
     {
         this.canMove = canMove;
     }
-
-    public boolean isSafe() { return isSafe; }
-    public void setSafe(boolean isSafe) { this.isSafe = isSafe; }
 
     public int getScore() { return score; }
     public void plusScore() { score++; }

@@ -1,26 +1,22 @@
-package com.hasherr.gdsesummerjam2014.entity.path;
+package com.hasherr.gdsesummerjam2014.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.hasherr.gdsesummerjam2014.entity.Entity;
 
 /**
- * Created by Evan on 7/4/2014.
+ * Created by Evan on 7/6/2014.
  */
-public class Log extends Entity
+public class Powerup extends Entity
 {
-    public Log(Vector2 position, Vector2 velocity)
+    public Powerup(Vector2 position)
     {
-        super("Sprites/log.png", position);
-        this.velocity = velocity;
+        super("Sprites/powerup.png", position);
     }
 
     @Override
     public void update()
     {
         super.update();
-
-        position.x += velocity.x * timeConstant;
     }
 
     @Override
