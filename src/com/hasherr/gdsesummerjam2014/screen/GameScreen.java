@@ -14,7 +14,7 @@ import com.hasherr.gdsesummerjam2014.level.Level;
  * User: Evan
  * Date: 7/4/14
  */
-public class GameScreen implements Screen
+public class GameScreen extends Screen
 {
     private SpriteBatch batch;
     private OrthographicCamera camera;
@@ -27,9 +27,9 @@ public class GameScreen implements Screen
     {
         this.batch = batch;
         this.camera = camera;
-        levelType = PathType.WATER;
+        levelType = PathType.ROAD;
 
-        level = new Level("Maps/river_map.tmx", batch, levelType);
+        level = new Level("Maps/road_map.tmx", batch, levelType);
         player = new Player("Sprites/player.png", new Vector2(3, 0));
         inputManager = new InputManager();
     }
@@ -67,6 +67,8 @@ public class GameScreen implements Screen
                 }
             }
 
+            System.out.println(player.isSafe());
+
             int[] hazardY = { 1, 2, 3, 5, 6, 7 };
             for (int y : hazardY)
             {
@@ -74,10 +76,11 @@ public class GameScreen implements Screen
                 {
                     if ((int)player.position.x == x && (int)player.position.y == y && !player.isSafe())
                     {
-                        System.out.println("I'M DIEING");
+                        isDisposable = true;
                     }
                 }
             }
+            player.setSafe(false); // Reset safeness of player.
         }
         else // Cars.
         {
@@ -86,7 +89,7 @@ public class GameScreen implements Screen
                 if (player.boundingBox.overlaps(e.boundingBox))
                 {
                     // TODO: Add screen switching.
-                    System.out.println("HOLY FUCKING DICKS");
+                    isDisposable = true;
                 }
             }
         }

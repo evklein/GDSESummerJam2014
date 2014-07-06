@@ -5,8 +5,9 @@ package com.hasherr.gdsesummerjam2014.screen;
  * User: Evan
  * Date: 7/4/14
  */
-public interface Screen
+public abstract class Screen
 {
-    public void render();
-    public void update();
+    public boolean isDisposable = false;
+    public abstract void render();
+    public abstract void update();
 }

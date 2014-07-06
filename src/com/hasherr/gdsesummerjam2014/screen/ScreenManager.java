@@ -32,6 +32,11 @@ public class ScreenManager
     {
         Screen lastScreen = currentScreens.get(currentScreens.size() - 1);
         lastScreen.update();
+
+        if (lastScreen.isDisposable)
+        {
+            currentScreens.add(new DeathScreen());
+        }
     }
 
     private void pop()

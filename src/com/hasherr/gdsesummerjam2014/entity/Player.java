@@ -12,6 +12,7 @@ public class Player extends Entity
 {
     private boolean canMove;
     private boolean isSafe;
+    private int score;
 
     public Player(String spritePath, Vector2 position)
     {
@@ -20,6 +21,7 @@ public class Player extends Entity
 
         canMove = true;
         isSafe = false;
+        score = 0;
     }
 
     @Override
@@ -49,4 +51,7 @@ public class Player extends Entity
 
     public boolean isSafe() { return isSafe; }
     public void setSafe(boolean isSafe) { this.isSafe = isSafe; }
+
+    public int getScore() { return score; }
+    public void plusScore() { score++; }
 }
