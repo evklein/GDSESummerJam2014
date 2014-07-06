@@ -1,5 +1,6 @@
 package com.hasherr.gdsesummerjam2014.entity;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -38,6 +39,11 @@ public class Player extends Entity
 
         position.x += velocity.x;
         position.y += velocity.y;
+    }
+
+    public void setFaceDirection(String direction)
+    {
+        this.sprite = new Texture("Sprites/Player/" + direction + ".png");
     }
 
     public boolean canMove()

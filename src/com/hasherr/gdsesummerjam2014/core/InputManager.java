@@ -27,13 +27,26 @@ public class InputManager
             }
 
             if (Gdx.input.isKeyPressed(Input.Keys.W))
+            {
                 playerToControl.position.y += 1f;
+                playerToControl.setFaceDirection("face_up");
+            }
             if (Gdx.input.isKeyPressed(Input.Keys.A))
+            {
                 playerToControl.position.x += -1f;
+                playerToControl.setFaceDirection("face_left");
+            }
             if (Gdx.input.isKeyPressed(Input.Keys.S))
+            {
                 playerToControl.position.y += -1f;
+                playerToControl.setFaceDirection("face_down");
+            }
             if (Gdx.input.isKeyPressed(Input.Keys.D))
+            {
                 playerToControl.position.x += 1f;
+                playerToControl.setFaceDirection("face_right");
+                playerToControl.setFaceDirection("face_right");
+            }
         }
         else
         {

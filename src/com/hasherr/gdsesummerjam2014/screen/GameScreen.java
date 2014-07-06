@@ -21,17 +21,21 @@ public class GameScreen extends Screen
     private Level level;
     private Player player;
     private InputManager inputManager;
-    private PathType levelType;
+    public PathType levelType;
+    public boolean isReadyForSwitch;
 
-    public GameScreen(SpriteBatch batch, OrthographicCamera camera)
+    public GameScreen(SpriteBatch batch, OrthographicCamera camera, PathType levelType)
     {
         this.batch = batch;
         this.camera = camera;
-        levelType = PathType.ROAD;
 
-        level = new Level("Maps/road_map.tmx", batch, levelType);
+        if (levelType == PathType.WATER)
+            level = new Level("Maps/river_map.tmx", batch, levelType);
+        else
+            level = new Level("Maps/road_map.tmx", batch, levelType);
         player = new Player("Sprites/player.png", new Vector2(3, 0));
         inputManager = new InputManager();
+        isReadyForSwitch = false;
     }
 
     @Override
@@ -52,6 +56,7 @@ public class GameScreen extends Screen
         player.update();
         inputManager.handleInput(player);
         handleLevelHazards();
+        handleLevelTypeSwitching();
     }
 
     private void handleLevelHazards()
@@ -64,18 +69,20 @@ public class GameScreen extends Screen
                 {
                     player.velocity.x = e.velocity.x;
                     player.setSafe(true);
+                    break;
                 }
             }
 
             System.out.println(player.isSafe());
 
             int[] hazardY = { 1, 2, 3, 5, 6, 7 };
-            for (int y : hazardY)
+            for (int y: hazardY)
             {
-                for (int x = 0; x < 9; x++)
+                for (int x = 0; x < 18; x++)
                 {
                     if ((int)player.position.x == x && (int)player.position.y == y && !player.isSafe())
                     {
+                        System.out.println("X: " + (int)player.position.x + " Y: " + (int)player.position.y + " Safe: " + player.isSafe());
                         isDisposable = true;
                     }
                 }
@@ -88,10 +95,17 @@ public class GameScreen extends Screen
             {
                 if (player.boundingBox.overlaps(e.boundingBox))
                 {
-                    // TODO: Add screen switching.
                     isDisposable = true;
                 }
             }
+        }
+    }
+
+    private void handleLevelTypeSwitching()
+    {
+        if (player.position.y > 8f)
+        {
+            isReadyForSwitch = true;
         }
     }
 }
