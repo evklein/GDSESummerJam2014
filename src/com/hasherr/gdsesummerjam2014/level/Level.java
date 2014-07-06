@@ -58,7 +58,7 @@ public class Level
                 }
             }
         };
-        timer.scheduleTask(timerTask, 0f, 0.5f);
+        timer.scheduleTask(timerTask, 0f, 1f);
         timer.start();
     }
 

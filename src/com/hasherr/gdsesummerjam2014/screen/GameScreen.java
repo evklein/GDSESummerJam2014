@@ -29,7 +29,7 @@ public class GameScreen implements Screen
         this.camera = camera;
         levelType = PathType.WATER;
 
-        level = new Level("Maps/map.tmx", batch, levelType);
+        level = new Level("Maps/river_map.tmx", batch, levelType);
         player = new Player("Sprites/player.png", new Vector2(3, 0));
         inputManager = new InputManager();
     }
