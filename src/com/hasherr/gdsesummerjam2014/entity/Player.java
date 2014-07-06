@@ -10,18 +10,20 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Player extends Entity
 {
-    public boolean canMove;
+    private boolean canMove;
 
     public Player(String spritePath, Vector2 position)
     {
         super(spritePath, position);
         velocity = new Vector2();
+
         canMove = true;
     }
 
     @Override
     public void render(SpriteBatch batch)
     {
+        // Draws the player in a specific way so that he is projected as a 1x1 unit on the level and not
         batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, false, false);
     }
 
@@ -32,6 +34,15 @@ public class Player extends Entity
 
         position.x += velocity.x;
         position.y += velocity.y;
-//        canMove = true; // Reset canMove for next movement.
+    }
+
+    public boolean canMove()
+    {
+        return canMove;
+    }
+
+    public void setCanMove(boolean canMove)
+    {
+        this.canMove = canMove;
     }
 }

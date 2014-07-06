@@ -23,16 +23,16 @@ public class Level
     private OrthogonalTiledMapRenderer levelRenderer;
     private int[] pathHeights = { 1, 2, 3, 5, 6, 7 };
     private ArrayList<Path> levelPaths;
-    SpriteBatch batch;
+    private SpriteBatch batch;
 
-    Timer timer;
-    Task timerTask;
+    private Timer timer;
+    private Task timerTask;
 
     public Level(String pathToMap, SpriteBatch batch, PathType pathType)
     {
         map = new TmxMapLoader().load(pathToMap);
         this.batch = batch;
-        levelRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch);
+        levelRenderer = new OrthogonalTiledMapRenderer(map, 1f / 64f, batch); // 1/64
         levelPaths = new ArrayList<>();
 
         for (int i : pathHeights)

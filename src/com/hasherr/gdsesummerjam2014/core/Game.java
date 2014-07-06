@@ -34,30 +34,30 @@ public class Game implements ApplicationListener
         clearScreen();
         screenManager.render(batch);
         screenManager.update();
+        camera.update();
     }
 
     private void clearScreen()
     {
         Gdx.gl.glClearColor(1f, 1f, 1f, 1.0f);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-        camera.update();
     }
 
     @Override
-    public void pause()
+    public void pause() // DEPRECATED: Not called on desktop.
     {
 
     }
 
     @Override
-    public void resume()
+    public void resume() // DEPRECATED: Not called on desktop.
     {
 
     }
 
 
     @Override
-    public void resize(int width, int height) // TODO: Deprecated.
+    public void resize(int width, int height) // DEPRECATED: Screen is not resizable.
     {
         camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
@@ -67,6 +67,6 @@ public class Game implements ApplicationListener
     @Override
     public void dispose()
     {
-
+        batch.dispose();
     }
 }

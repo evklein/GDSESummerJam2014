@@ -20,12 +20,13 @@ public class Log extends Entity
     {
         super.update();
 
-        position.x -= 0.04f;
+        position.x -= 0.04;
     }
 
     @Override
     public void render(SpriteBatch batch)
     {
+        // Same as player class; render so that each sprite appears as a 1x1 unit.
         batch.draw(sprite, position.x, position.y, 0f, 0f, 1f, 1f, 1f, 1f, 0f, 0, 0, 64, 64, false, false);
     }
 }

@@ -38,9 +38,15 @@ public class Path
         for (Entity e: pathEntities)
         {
             e.render(batch);
+        }
+    }
+
+    public void updatePathObjects()
+    {
+        for (Entity e: pathEntities)
+        {
             e.update();
         }
-
     }
 
     private void handleEntityExistances()

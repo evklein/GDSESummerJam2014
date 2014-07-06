@@ -16,28 +16,29 @@ import com.hasherr.gdsesummerjam2014.level.Level;
  */
 public class GameScreen implements Screen
 {
-    SpriteBatch batch;
-    OrthographicCamera camera;
-    InputManager inputManager;
-    Level level;
-    Player player;
-    Log log;
+    private SpriteBatch batch;
+    private OrthographicCamera camera;
+    private Level level;
+    private Player player;
+    private InputManager inputManager;
 
     public GameScreen(SpriteBatch batch, OrthographicCamera camera)
     {
-        level = new Level("Maps/map.tmx", batch, PathType.WATER);
-        player = new Player("Sprites/player.png", new Vector2(3, 0));
         this.batch = batch;
         this.camera = camera;
+
+        level = new Level("Maps/map.tmx", batch, PathType.WATER);
+        player = new Player("Sprites/player.png", new Vector2(3, 0));
         inputManager = new InputManager();
     }
 
     @Override
     public void render()
     {
+        /* batch.begin() is never called because for some reason batch.begin() is
+         ALREADY called in level's levelRenderer's render() method. (LibGDX)
+          */
         level.drawLevel(camera);
-        log = new Log(new Vector2(4, 1), new Vector2(-0.2f, 0f));
-        log.render(batch);
         player.render(batch);
         batch.end();
     }
@@ -45,8 +46,8 @@ public class GameScreen implements Screen
     @Override
     public void update()
     {
+        level
         player.update();
-        log.update();
         inputManager.handleInput(player);
     }
 }
