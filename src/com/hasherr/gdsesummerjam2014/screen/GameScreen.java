@@ -1,7 +1,10 @@
 package com.hasherr.gdsesummerjam2014.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.hasherr.gdsesummerjam2014.core.InputManager;
 import com.hasherr.gdsesummerjam2014.entity.Entity;
@@ -23,6 +26,7 @@ public class GameScreen extends Screen
     private InputManager inputManager;
     public PathType levelType;
     public boolean isReadyForSwitch;
+    BitmapFont scoreFont;
 
     public GameScreen(SpriteBatch batch, OrthographicCamera camera, PathType levelType)
     {
@@ -33,26 +37,28 @@ public class GameScreen extends Screen
             level = new Level("Maps/river_map.tmx", batch, levelType);
         else
             level = new Level("Maps/road_map.tmx", batch, levelType);
-        player = new Player("Sprites/player.png", new Vector2(5, 0));
+        player = new Player("Sprites/Player/face_down.png", new Vector2(5, 0));
         inputManager = new InputManager();
         isReadyForSwitch = false;
         this.levelType = levelType;
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Spoutnik.ttf"));
+        scoreFont = generator.generateFont(12);
     }
 
     @Override
-    public void render()
-    {
-        /* batch.begin() is never called because for some reason batch.begin() is
-         ALREADY called in level's levelRenderer's render() method. (LibGDX)
-          */
-        level.drawLevel(camera);
-        player.render(batch);
-        batch.end();
-    }
+        public void render()
+        {
+            level.drawLevel(camera);
+            player.render(batch);
+            scoreFont.draw(batch, Integer.toString(player.getScore()), 1f, 7f);
+            batch.end();
+        }
 
     @Override
     public void update()
     {
+        handleLevelHazards();
         level.updatePaths();
         player.update();
         inputManager.handleInput(player);
@@ -83,22 +89,19 @@ public class GameScreen extends Screen
             {
                 if (player.boundingBox.overlaps(e.boundingBox))
                 {
-                    player.velocity.x = e.velocity.x;
+                    player.velocity.x = e.velocity.x * e.timeConstant;
                     isOnPlatform = true;
                 }
             }
 
             int[] hazardY = { 1, 2, 3, 5, 6, 7 };
-            for (int y: hazardY)
+            for (int x = 0; x < 18; x++)
             {
-                for (int x = 0; x < 18; x++)
+                for (int y: hazardY)
                 {
-                    for (int i = 0; i < 3; i++)
+                    if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
                     {
-                        if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
-                        {
-                            isDisposable = true;
-                        }
+                        isDisposable = true;
                     }
                 }
             }
@@ -113,6 +116,33 @@ public class GameScreen extends Screen
                 }
             }
         }
+
+        if (player.position.y < 0f)
+            player.position.y = 0f;
+        if (player.position.y == 0f && player.position.x < 0f)
+        {
+            player.position.set(0f, 0f);
+        }
+        if (player.position.y == 0f && player.position.x > 15f)
+        {
+            player.position.set(15f, 0f);
+        }
+        if (player.position.y == 4f && player.position.x < 0f)
+        {
+            player.position.set(0f, 4f);
+        }
+        if (player.position.y == 4f && player.position.x > 15f)
+        {
+            player.position.set(15f, 4f);
+        }
+        if (player.position.y == 8f && player.position.x < 0f)
+        {
+            player.position.set(0f, 8f);
+        }
+        if (player.position.y == 8f && player.position.x > 15f)
+        {
+            player.position.set(15f, 8f);
+        }
     }
 
     private void handleLevelTypeSwitching()
@@ -122,4 +152,5 @@ public class GameScreen extends Screen
             isReadyForSwitch = true;
         }
     }
+
 }

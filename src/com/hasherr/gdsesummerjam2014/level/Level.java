@@ -1,5 +1,7 @@
 package com.hasherr.gdsesummerjam2014.level;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -8,10 +10,11 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.hasherr.gdsesummerjam2014.core.SoundManager;
 import com.hasherr.gdsesummerjam2014.entity.Entity;
+import com.hasherr.gdsesummerjam2014.entity.Powerup;
 import com.hasherr.gdsesummerjam2014.entity.path.Path;
 import com.hasherr.gdsesummerjam2014.entity.path.PathType;
-import com.hasherr.gdsesummerjam2014.entity.Powerup;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,6 +32,7 @@ public class Level
     private ArrayList<Path> levelPaths;
     private SpriteBatch batch;
     private Powerup powerup;
+    private SoundManager soundManager;
 
     private Timer timer;
     private Task timerTask;
@@ -124,5 +128,7 @@ public class Level
     public void powerupActivated()
     {
         powerup.position.set(-500f, -500f); // Set it to nowhere.
+        Sound sound = Gdx.audio.newSound(Gdx.files.internal("Sounds/powerup.wav"));
+        sound.play();
     }
 }

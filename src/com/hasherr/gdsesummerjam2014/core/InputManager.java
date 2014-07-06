@@ -28,8 +28,11 @@ public class InputManager
 
             if (Gdx.input.isKeyPressed(Input.Keys.W))
             {
-                playerToControl.position.y += 1f;
-                playerToControl.setFaceDirection("face_up");
+                if (!(playerToControl.position.y > 8f))
+                {
+                    playerToControl.position.y += 1f;
+                    playerToControl.setFaceDirection("face_up");
+                }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.A))
             {

@@ -11,7 +11,7 @@ public class Starter
     public static void main(String[] args)
     {
         LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
-        configuration.title = "Aesop";
+        configuration.title = "Aes0p - A game made in 72 hours";
         configuration.width = 854;
         configuration.height = 480;
         configuration.resizable = false;

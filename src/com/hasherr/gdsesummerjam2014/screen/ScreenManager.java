@@ -21,7 +21,7 @@ public class ScreenManager
     public ScreenManager(SpriteBatch batch, OrthographicCamera camera)
     {
         currentScreens = new ArrayList<Screen>();
-        currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
+        currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
 
         this.batch = batch;
         this.camera = camera;
@@ -45,7 +45,7 @@ public class ScreenManager
 
         if (lastScreen.isDisposable)
         {
-//            currentScreens.add(new DeathScreen());
+            currentScreens.add(new DeathScreen());
         }
 
         if (lastScreen instanceof GameScreen && ((GameScreen) lastScreen).isReadyForSwitch)
