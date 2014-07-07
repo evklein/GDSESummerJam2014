@@ -33,6 +33,6 @@ public class Car extends Entity
     {
         super.update();
 
-        position.x += velocity.x;
+        position.x += velocity.x * timeConstant;
     }
 }

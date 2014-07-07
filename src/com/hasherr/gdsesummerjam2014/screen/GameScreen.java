@@ -125,6 +125,8 @@ public class GameScreen extends Screen
         {
             for (int y: hazardY)
             {
+                if (player.position.x < 0f || player.position.x > 15f)
+                    isDisposable = true;
                 if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
                 {
 //                    isDisposable = true;
@@ -172,6 +174,7 @@ public class GameScreen extends Screen
         {
             player.position.set(15f, 8f);
         }
+
     }
 
     private void handleLevelTypeSwitching()

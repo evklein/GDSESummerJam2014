@@ -54,7 +54,7 @@ public class Level
         if (pathType == PathType.WATER)
             timerInterval = 1f;
         else
-            timerInterval = 5f;
+            timerInterval = 3f;
 
         initiateTimerElements();
     }
@@ -127,8 +127,25 @@ public class Level
 
     public void powerupActivated()
     {
+        Timer t = new Timer();
+        timer.scheduleTask(new Task()
+        {
+            @Override
+            public void run()
+            {
+                for (Entity e: getEntities())
+                {
+                    e.timeConstant = 0.4f;
+                }
+            }
+        }, 0f, 4f, 1);
+        timer.start();
         powerup.position.set(-500f, -500f); // Set it to nowhere.
         Sound sound = Gdx.audio.newSound(Gdx.files.internal("Sounds/powerup.wav"));
         sound.play();
+        for (Entity e: getEntities())
+        {
+            e.timeConstant = 1f;
+        }
     }
 }
