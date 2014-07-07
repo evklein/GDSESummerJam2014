@@ -95,7 +95,7 @@ public class GameScreen extends Screen
             level.powerupActivated();
             for (Entity e: level.getEntities())
             {
-                e.timeConstant = 0.4f;
+                e.timeConstant = 0.2f;
             }
         }
     }
@@ -111,26 +111,40 @@ public class GameScreen extends Screen
     private void handleWaterHazards()
     {
         boolean isOnPlatform = false;
+        boolean safe = false;
+
         for (Entity e: level.getEntities())
         {
-            if (player.boundingBox.overlaps(e.boundingBox))
+            if (player.position.x < e.position.x + 1f && player.position.x + 1f > e.position.x && player.position.y
+                    < e.position.y + 1f && player.position.y + 1f > e.position.y)
+
             {
-                player.velocity.x = e.velocity.x * e.timeConstant;
                 isOnPlatform = true;
+                player.velocity.x = e.velocity.x * e.timeConstant;
             }
         }
 
-        int[] hazardY = { 1, 2, 3, 5, 6, 7 };
-        for (int x = 0; x < 18; x++)
+        if (isOnPlatform)
+            safe = true;
+        if (!isOnPlatform)
         {
-            for (int y: hazardY)
+            if (player.position.x < 0f || player.position.x > 15f)
+                isDisposable = true;
+
+            int[] safeY = { 0,  4, 8 };
+            for (int x = 0; x < 18; x++)
             {
-                if (player.position.x < 0f || player.position.x > 15f)
-                    isDisposable = true;
-                if ((int)player.position.x == x && (int)player.position.y == y && !isOnPlatform)
+                for (int y: safeY)
                 {
-//                    isDisposable = true;
+                    if ((int)player.position.x == x && (int)player.position.y == y)
+                    {
+                        safe = true;
+                    }
                 }
+            }
+            if (!safe)
+            {
+                isDisposable = true;
             }
         }
     }

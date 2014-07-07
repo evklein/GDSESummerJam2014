@@ -54,10 +54,7 @@ public class DeathScreen extends DisplayScreen
         if (Gdx.input.isTouched())
         {
             if (menuButton.contains(Gdx.input.getX(), Gdx.input.getY()))
-            {
                 managerToRespondTo.showTitle();
-                System.out.println("WAT");
-            }
             if (replayButton.contains(Gdx.input.getY(), Gdx.input.getY()))
                 managerToRespondTo.startGame();
         }

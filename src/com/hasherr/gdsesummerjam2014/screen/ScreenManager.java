@@ -85,7 +85,6 @@ public class ScreenManager
 
     public void startGame()
     {
-        System.out.println("okay");
         currentScreens.clear();
         currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
     }
@@ -98,7 +97,6 @@ public class ScreenManager
 
     public void showTitle()
     {
-        System.out.println("HOLY SHIT");
         currentScreens.clear();
         currentScreens.add(new StartScreen(batch, camera, this));
     }

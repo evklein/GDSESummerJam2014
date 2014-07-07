@@ -96,7 +96,6 @@ public class Path
     {
         Direction[] directions = { Direction.RIGHT_TO_LEFT, Direction.LEFT_TO_RIGHT };
         int x = new Random().nextInt(2);
-        System.out.println(directions[x].name());
         return directions[x];
     }
 }
