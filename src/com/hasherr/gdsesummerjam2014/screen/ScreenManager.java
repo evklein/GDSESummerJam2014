@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hasherr.gdsesummerjam2014.entity.path.PathType;
 import com.hasherr.gdsesummerjam2014.screen.display.CreditsScreen;
+import com.hasherr.gdsesummerjam2014.screen.display.DeathScreen;
 import com.hasherr.gdsesummerjam2014.screen.display.PauseScreen;
 import com.hasherr.gdsesummerjam2014.screen.display.StartScreen;
 
@@ -69,7 +70,7 @@ public class ScreenManager
 
         if (lastScreen.isDisposable)
         {
-            currentScreens.add(new DeathScreen());
+            currentScreens.add(new DeathScreen(batch, camera, this));
         }
 
         if (lastScreen.isReadyForSwitch())
@@ -105,6 +106,7 @@ public class ScreenManager
 
     public void startGame()
     {
+        System.out.println("okay");
         currentScreens.clear();
         currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
     }
@@ -117,6 +119,7 @@ public class ScreenManager
 
     public void showTitle()
     {
+        System.out.println("HOLY SHIT");
         currentScreens.clear();
         currentScreens.add(new StartScreen(batch, camera, this));
     }
@@ -132,5 +135,10 @@ public class ScreenManager
     private Screen getLastScreen()
     {
         return currentScreens.get(currentScreens.size() - 1);
+    }
+
+    public void clear()
+    {
+        currentScreens.clear();
     }
 }
