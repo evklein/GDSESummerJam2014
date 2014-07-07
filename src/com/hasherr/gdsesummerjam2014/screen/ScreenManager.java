@@ -23,7 +23,7 @@ public class ScreenManager
     private ArrayList<PathType> levelCycle = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private boolean isEscPressed;
+    private boolean isPaused;
 
     public ScreenManager(SpriteBatch batch, OrthographicCamera camera)
     {
@@ -36,7 +36,7 @@ public class ScreenManager
         levelCycle.add(PathType.ROAD);
         levelCycle.add(PathType.WATER);
 
-        isEscPressed = false;
+        isPaused = false;
     }
 
     public void render()
@@ -52,55 +52,34 @@ public class ScreenManager
         Screen lastScreen = getLastScreen();
         lastScreen.update();
 
-        checkEscapeKey();
 
         if (lastScreen instanceof GameScreen)
             doGameScreenUpdate((GameScreen)lastScreen);
 
-        if (lastScreen instanceof PauseScreen)
-            doPauseScreenUpdate();
     }
 
     private void doGameScreenUpdate(GameScreen lastScreen)
     {
-        if (isEscPressed)
+        int score = lastScreen.getScore();
+        if (Gdx.input.isKeyPressed(Keys.ESCAPE))
         {
             pauseScreen();
         }
 
         if (lastScreen.isDisposable)
         {
-            currentScreens.add(new DeathScreen(batch, camera, this));
+            currentScreens.add(new DeathScreen(batch, camera, this, score));
         }
 
         if (lastScreen.isReadyForSwitch())
         {
-            int score = lastScreen.getScore();
             score++;
             currentScreens.clear();
             if (lastScreen.levelType == PathType.WATER)
                 currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
             else
-                currentScreens.add(new GameScreen(batch, camera, PathType.ROAD));
+                currentScreens.add(new GameScreen(batch, camera, PathType.WATER));
             ((GameScreen)currentScreens.get(currentScreens.size() - 1)).setScore(score);
-        }
-    }
-
-    private void doPauseScreenUpdate()
-    {
-        if (isEscPressed)
-        {
-            currentScreens.remove(currentScreens.size() - 1);
-            isEscPressed = false;
-        }
-    }
-
-    private void checkEscapeKey()
-    {
-        isEscPressed = false;
-        if (Gdx.input.isKeyPressed(Keys.ESCAPE))
-        {
-            isEscPressed = true;
         }
     }
 
@@ -130,6 +109,11 @@ public class ScreenManager
         {
             currentScreens.add(new PauseScreen(batch, camera, this));
         }
+    }
+
+    public void unpause()
+    {
+        currentScreens.remove(getLastScreen());
     }
 
     private Screen getLastScreen()

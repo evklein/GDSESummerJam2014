@@ -52,7 +52,7 @@ public class Game implements ApplicationListener
     @Override
     public void resume()
     {
-
+        screenManager.unpause();
     }
 
 

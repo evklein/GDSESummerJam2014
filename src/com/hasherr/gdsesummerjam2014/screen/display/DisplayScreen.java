@@ -12,7 +12,7 @@ import com.hasherr.gdsesummerjam2014.screen.ScreenManager;
  */
 public abstract class DisplayScreen extends Screen
 {
-    private SpriteBatch batch;
+    protected SpriteBatch batch;
     private OrthographicCamera camera;
     protected ScreenManager managerToRespondTo;
     private Texture screen;
@@ -35,13 +35,13 @@ public abstract class DisplayScreen extends Screen
         batch.end();
     }
 
-    private void fixCamera()
+    protected void fixCamera()
     {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.setProjectionMatrix(camera.combined);
     }
 
-    private void unfixCamera()
+    protected void unfixCamera()
     {
         camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
