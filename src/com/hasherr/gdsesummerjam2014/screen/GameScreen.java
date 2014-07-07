@@ -27,6 +27,7 @@ public class GameScreen extends Screen
     public PathType levelType;
     private boolean isReadyForSwitch;
     private BitmapFont scoreFont;
+    private boolean turtleModeActivated;
 
     public GameScreen(SpriteBatch batch, OrthographicCamera camera, PathType levelType)
     {
@@ -35,6 +36,7 @@ public class GameScreen extends Screen
         inputManager = new InputManager();
         isReadyForSwitch = false;
         this.levelType = levelType;
+        turtleModeActivated = false;
 
         determineMap();
         player = new Player("Sprites/Player/face_down.png", new Vector2(5, 0));
@@ -61,15 +63,20 @@ public class GameScreen extends Screen
     {
         level.drawLevel(camera);
         player.render(batch);
-        renderBitMapFont();
+        renderBitMapTexts();
         batch.end();
     }
 
-    private void renderBitMapFont()
+    private void renderBitMapTexts()
     {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.setProjectionMatrix(camera.combined);
         scoreFont.draw(batch, Integer.toString(player.getScore()), 50, 6*64);
+        if (turtleModeActivated)
+        {
+            scoreFont.draw(batch, "TURTLE MODE ", 100, 300f);
+            scoreFont.draw(batch, "  ACTIVATED", 100, 190f);
+        }
         camera.setToOrtho(false, Gdx.graphics.getWidth() / (Gdx.graphics.getHeight() / 9f),
                 Gdx.graphics.getHeight() / (Gdx.graphics.getHeight() / 9f));
         batch.setProjectionMatrix(camera.combined);
@@ -82,16 +89,18 @@ public class GameScreen extends Screen
         level.updatePaths();
         player.update();
         inputManager.handleInput(player);
+        handlePlayerLevelBounds();
         handleLevelHazards();
         handleLevelTypeSwitching();
         handlePowerup();
-        handlePlayerLevelBounds();
     }
 
     private void handlePowerup()
     {
         if (level.getPowerup().boundingBox.overlaps(player.boundingBox))
         {
+            player.setTurtle(true);
+            turtleModeActivated = true;
             level.powerupActivated();
             for (Entity e: level.getEntities())
             {
@@ -124,13 +133,17 @@ public class GameScreen extends Screen
             }
         }
 
+        int[] hazardY = { 1, 2, 3, 5, 6, 7 };
+        for (int y: hazardY)
+        {
+            if ((player.position.x < 0f || player.position.x > 15f) && player.position.y == y)
+                isDisposable = true;
+        }
+
         if (isOnPlatform)
             safe = true;
         if (!isOnPlatform)
         {
-            if (player.position.x < 0f || player.position.x > 15f)
-                isDisposable = true;
-
             int[] safeY = { 0,  4, 8 };
             for (int x = 0; x < 18; x++)
             {

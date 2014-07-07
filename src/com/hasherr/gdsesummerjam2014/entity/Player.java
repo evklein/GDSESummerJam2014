@@ -13,6 +13,7 @@ public class Player extends Entity
 {
     private boolean canMove;
     private int score;
+    private boolean isTurtle;
 
     public Player(String spritePath, Vector2 position)
     {
@@ -20,6 +21,7 @@ public class Player extends Entity
         velocity = new Vector2();
         canMove = true;
         score = 0;
+        isTurtle = false;
     }
 
     @Override
@@ -54,4 +56,7 @@ public class Player extends Entity
 
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
+
+    public void setTurtle(boolean value) { isTurtle = value; }
+    public boolean isTurtle() { return isTurtle; }
 }

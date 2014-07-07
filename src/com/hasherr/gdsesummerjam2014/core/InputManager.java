@@ -31,24 +31,35 @@ public class InputManager
                 if (!(playerToControl.position.y > 8f))
                 {
                     playerToControl.position.y += 1f;
-                    playerToControl.setFaceDirection("face_up");
+                    if (playerToControl.isTurtle())
+                        playerToControl.setFaceDirection("/Turtle/face_up");
+                    else
+                        playerToControl.setFaceDirection("face_up");
                 }
             }
             if (Gdx.input.isKeyPressed(Input.Keys.A))
             {
                 playerToControl.position.x += -1f;
-                playerToControl.setFaceDirection("face_left");
+                if (playerToControl.isTurtle())
+                    playerToControl.setFaceDirection("/Turtle/face_left");
+                else
+                    playerToControl.setFaceDirection("face_left");
             }
             if (Gdx.input.isKeyPressed(Input.Keys.S))
             {
                 playerToControl.position.y += -1f;
-                playerToControl.setFaceDirection("face_down");
+                if (playerToControl.isTurtle())
+                    playerToControl.setFaceDirection("/Turtle/face_down");
+                else
+                    playerToControl.setFaceDirection("face_down");
             }
             if (Gdx.input.isKeyPressed(Input.Keys.D))
             {
                 playerToControl.position.x += 1f;
-                playerToControl.setFaceDirection("face_right");
-                playerToControl.setFaceDirection("face_right");
+                if (playerToControl.isTurtle())
+                    playerToControl.setFaceDirection("/Turtle/face_right");
+                else
+                    playerToControl.setFaceDirection("face_right");
             }
         }
         else
