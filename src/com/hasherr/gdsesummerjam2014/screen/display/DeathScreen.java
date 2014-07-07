@@ -31,8 +31,8 @@ public class DeathScreen extends DisplayScreen
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Spoutnik.ttf"));
         scoreFont = generator.generateFont(50);
 
-        menuButton = new Rectangle(540, 329, 202, 88);
-        replayButton = new Rectangle(156, 327, 202, 88);
+        replayButton = new Rectangle(143, 299, 203, 88);
+        menuButton = new Rectangle(491, 300, 202, 87);
     }
 
     @Override
@@ -53,10 +53,11 @@ public class DeathScreen extends DisplayScreen
         manageHighScore();
         if (Gdx.input.isTouched())
         {
-            if (menuButton.contains(Gdx.input.getX(), Gdx.input.getY()))
-                managerToRespondTo.showTitle();
             if (replayButton.contains(Gdx.input.getY(), Gdx.input.getY()))
                 managerToRespondTo.startGame();
+            if (menuButton.contains(Gdx.input.getX(), Gdx.input.getY()))
+                managerToRespondTo.showTitle();
+
         }
     }
 
